@@ -1,10 +1,9 @@
 ###
 #
-# A ubuntu based newrelic-cloudwatch monitoring agent image using the latest official release when built
+# A ubuntu based newrelic-twilio monitoring agent image using the latest official release when built
 #
 ###
 FROM ubuntu:14.04
-MAINTAINER Kingsquare <docker@kingsquare.nl>
 
 WORKDIR /usr/local/newrelic_twilio_plugin-1.0.2
 
