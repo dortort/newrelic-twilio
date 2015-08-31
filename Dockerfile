@@ -6,7 +6,7 @@
 FROM ubuntu:14.04
 MAINTAINER Kingsquare <docker@kingsquare.nl>
 
-WORKDIR /usr/local/newrelic_twilio_plugin-latest
+WORKDIR /usr/local/newrelic_twilio_plugin-1.0.2
 
 ####
 # Base stuff, software dependencies from APT
