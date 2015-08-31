@@ -19,7 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get autoremove --purge && \
     apt-get clean && \
     gem install --no-rdoc --no-ri bundler && \
-    curl -L https://github.com/newrelic-platform/newrelic_twilio_plugin/archive/latest.tar.gz > latest.tar.gz && \
+    curl -L https://github.com/newrelic-platform/newrelic_twilio_plugin/archive/1.0.2.tar.gz > latest.tar.gz && \
     tar -zxf latest.tar.gz -C /usr/local && \
     cp config/newrelic_plugin.yml.example config/newrelic_plugin.yml && \
     sed -e "s/YOUR_LICENSE_KEY_HERE/<%= ENV[\"NEWRELIC_KEY\"] %>/g" -i config/newrelic_plugin.yml && \
