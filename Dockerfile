@@ -17,16 +17,19 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get install -qy --no-install-recommends build-essential curl ruby-dev libxml2-dev libxslt-dev ruby && \
     apt-get autoremove --purge && \
     apt-get clean && \
-    gem install --no-rdoc --no-ri bundler && \
-    curl -L https://github.com/newrelic-platform/newrelic_twilio_plugin/archive/1.0.2.tar.gz > latest.tar.gz && \
-    tar -zxf latest.tar.gz -C /usr/local && \
-    cp config/newrelic_plugin.yml.example config/newrelic_plugin.yml && \
-    sed -e "s/YOUR_LICENSE_KEY_HERE/<%= ENV[\"NEWRELIC_KEY\"] %>/g" -i config/newrelic_plugin.yml && \
-    sed -e "s/YOUR_TWILIO_ACCOUNT_SID_HERE/<%= ENV[\"TWILIO_ACCOUNT_SID\"] %>/g" -i config/newrelic_plugin.yml && \
-    sed -e "s/YOUR_TWILIO_AUTH_TOKEN_HERE/<%= ENV[\"TWILIO_AUTH_TOKEN\"] %>/g" -i config/newrelic_plugin.yml && \
-    bundle install --clean --quiet --without test && \
-    apt-get remove -yq --purge build-essential curl ruby-dev libxml2-dev libxslt-dev && \
+    gem install --no-rdoc --no-ri bundler
+
+RUN curl -L https://github.com/newrelic-platform/newrelic_twilio_plugin/archive/1.0.2.tar.gz > latest.tar.gz && \
+    tar -zxf latest.tar.gz -C /usr/local
+
+RUN bundle install --clean --quiet --without test
+
+RUN apt-get remove -yq --purge build-essential curl ruby-dev libxml2-dev libxslt-dev && \
     apt-get autoremove -yq --purge && \
     rm -rf latest.tar.gz /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
-ENTRYPOINT ["bundle", "exec", "./bin/newrelic_twilio"]
+COPY ./docker-entrypoint.sh /
+
+RUN chmod 700 /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
