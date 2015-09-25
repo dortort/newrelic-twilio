@@ -1,8 +1,8 @@
 Newrelic-twilio
 ===================
 
-A simple [newrelic twilio plugin](https://github.com/newrelic-platform/newrelic_twilio_plugin) docker container
-This image is available for pulling from the [Docker hub](https://index.docker.io/u/dortort/newrelic-twilio/)
+A simple [newrelic twilio plugin](https://github.com/newrelic-platform/newrelic_twilio_plugin) docker container.
+This image is available for pulling from [Docker Hub](https://index.docker.io/u/dortort/newrelic-twilio/)
 
 Launch this container with the following environment variables to suit your situation:
 
